@@ -8,7 +8,7 @@ It is meant to install essential software on fresh Debian based environments.
 ## Installation
 
 ```
-wget -O - https://raw.githubusercontent.com/yokomizor/yarbs/master/yarbs.sh | sh
+sh -c "$(wget -qO - https://raw.githubusercontent.com/yokomizor/yarbs/master/yarbs.sh)"
 ```
 
 
