@@ -15,6 +15,9 @@ This script will install packages in you system.
 You can find the source code and more information at:
 https://github.com/yokomizor/yarbs
 
+WARNING: This script will create dotfiles in your \$HOME directory. If any the
+files yarbs tries to create already exists, it will just replace.
+
 Would you like to proceed? (root privileges will be required) [y/N]
 EOF
 
@@ -58,20 +61,41 @@ install()
 
     pip3 install PyOpenSSL yubikey-manager
     
-    git clone https://github.com/preservim/nerdtree.git ~/.vim/pack/vendor/start/nerdtree
-    git clone https://github.com/yokomizor/dotfiles.git ~/.yokomizor_dotfiles
+    if [ ! -d "$HOME/.vim/pack/vendor/start/nerdtree" ]; then
+        git clone https://github.com/preservim/nerdtree.git ~/.vim/pack/vendor/start/nerdtree
+        vim -u NONE -c "helptags ~/.vim/pack/vendor/start/nerdtree/doc" -c q
+    fi
 
-    vim -u NONE -c "helptags ~/.vim/pack/vendor/start/nerdtree/doc" -c q
+    if [ ! -d "$HOME/.yokomizor_dotfiles" ]; then
+        git clone https://github.com/yokomizor/dotfiles.git ~/.yokomizor_dotfiles
+    fi
 
-    ln -s ~/.yokomizor_dotfiles/.gitconfig ~/.gitconfig
-    ln -s ~/.yokomizor_dotfiles/.mailcap ~/.mailcap
-    ln -s ~/.yokomizor_dotfiles/.mutt ~/.mutt
-    ln -s ~/.yokomizor_dotfiles/.newsboat ~/.newsboat
-    ln -s ~/.yokomizor_dotfiles/.profile ~/.profile
-    ln -s ~/.yokomizor_dotfiles/.tmux.conf ~/.tmux.conf
-    ln -s ~/.yokomizor_dotfiles/.vimrc ~/.vimrc
+    ln -sf ~/.yokomizor_dotfiles/.gitconfig ~/.gitconfig
+    ln -sf ~/.yokomizor_dotfiles/.mailcap ~/.mailcap
+    ln -sf ~/.yokomizor_dotfiles/.mutt ~/.mutt
+    ln -sf ~/.yokomizor_dotfiles/.newsboat ~/.newsboat
+    ln -sf ~/.yokomizor_dotfiles/.profile ~/.profile
+    ln -sf ~/.yokomizor_dotfiles/.tmux.conf ~/.tmux.conf
+    ln -sf ~/.yokomizor_dotfiles/.vimrc ~/.vimrc
 
-    source ~/.profile
+    setxkbmap \
+        -model "pc105" \
+        -model "us" \
+        -model "intl" \
+        -model "ctrl:swapcaps"
+
+    sudo su root -c "cat > /etc/default/keyboard<< EOF
+# KEYBOARD CONFIGURATION FILE
+
+# Consult the keyboard(5) manual page.
+
+XKBMODEL=\"pc105\"
+XKBLAYOUT=\"us\"
+XKBVARIANT=\"intl\"
+XKBOPTIONS=\"ctrl:swapcaps\"
+
+BACKSPACE=\"guess\"
+EOF"
 }
 
 start_services()
