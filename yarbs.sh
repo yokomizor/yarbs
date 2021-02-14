@@ -34,7 +34,13 @@ esac
 
 install()
 {
-    sudo apt install \
+    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0 
+    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key 8D81803C0EBFCD88
+
+    sudo apt-add-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+    sudo apt-add-repository https://cli.github.com/packages
+
+    sudo apt update && sudo apt install \
         git \
         vim \
         tmux \
@@ -42,6 +48,10 @@ install()
         newsboat \
         lynx \
         docker \
+        apt-transport-https \
+        ca-certificates \
+        curl \
+        software-properties-common \
         wget \
         gnupg2 \
         gnupg-agent \
@@ -57,6 +67,11 @@ install()
         libpcsclite-dev \
         python3-pip \
         python3-pyscard \
+        xclip \
+        docker-ce \
+        docker-ce-cli \
+        containerd.io \
+        gh \
         -y
 
     pip3 install PyOpenSSL yubikey-manager
@@ -82,9 +97,9 @@ install()
 
     setxkbmap \
         -model "pc105" \
-        -model "us" \
-        -model "intl" \
-        -model "ctrl:swapcaps"
+        -layout "us" \
+        -variant "intl" \
+        -option "ctrl:swapcaps"
 
     sudo su root -c "cat > /etc/default/keyboard<< EOF
 # KEYBOARD CONFIGURATION FILE
