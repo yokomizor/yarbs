@@ -77,6 +77,8 @@ install()
     ln -sf ~/.yokomizor_dotfiles/.profile ~/.profile
     ln -sf ~/.yokomizor_dotfiles/.tmux.conf ~/.tmux.conf
     ln -sf ~/.yokomizor_dotfiles/.vimrc ~/.vimrc
+    ln -sf ~/.yokomizor_dotfiles/.gnupg/gpg.conf ~/.gnupg/gpg.conf
+    ln -sf ~/.yokomizor_dotfiles/.gnupg/gpg-agent.conf ~/.gnupg/gpg-agent.conf
 
     setxkbmap \
         -model "pc105" \
