@@ -85,13 +85,14 @@ install()
         git clone https://github.com/yokomizor/dotfiles.git ~/.yokomizor_dotfiles
     fi
 
-    ln -sf ~/.yokomizor_dotfiles/.gitconfig ~/.gitconfig
-    ln -sf ~/.yokomizor_dotfiles/.mailcap ~/.mailcap
-    ln -sf ~/.yokomizor_dotfiles/.mutt ~/.mutt
-    ln -sf ~/.yokomizor_dotfiles/.newsboat ~/.newsboat
-    ln -sf ~/.yokomizor_dotfiles/.profile ~/.profile
-    ln -sf ~/.yokomizor_dotfiles/.tmux.conf ~/.tmux.conf
-    ln -sf ~/.yokomizor_dotfiles/.vimrc ~/.vimrc
+    ln -sf ~/.yokomizor_dotfiles/.gitconfig ~
+    ln -sf ~/.yokomizor_dotfiles/.mailcap ~
+    ln -sf ~/.yokomizor_dotfiles/.mutt ~
+    ln -sf ~/.yokomizor_dotfiles/.newsboat ~
+    ln -sf ~/.yokomizor_dotfiles/.profile ~
+    ln -sf ~/.yokomizor_dotfiles/.aliases ~
+    ln -sf ~/.yokomizor_dotfiles/.tmux.conf ~
+    ln -sf ~/.yokomizor_dotfiles/.vimrc ~
     ln -sf ~/.yokomizor_dotfiles/.gnupg/gpg.conf ~/.gnupg/gpg.conf
     ln -sf ~/.yokomizor_dotfiles/.gnupg/gpg-agent.conf ~/.gnupg/gpg-agent.conf
 
